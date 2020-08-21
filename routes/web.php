@@ -101,6 +101,15 @@ Route::get('/start/', 'PagesController@start')->name('start');
 
 Route::post('/settings/timezone/', 'PagesController@history')->name('saveTimezone');
 
+
+// Create page for history menubar
+
+Route::get('/history', 'PagesController@historyPage')->name('history');
+
+
+
+
+
 //Route::get('/friday', 'PagesController@friday')->name('friday');
 
 Route::post('/rebrandly-domain', 'PagesController@rebrandlyDomain')->name('rebrandly.domain');

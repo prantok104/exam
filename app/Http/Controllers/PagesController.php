@@ -17,6 +17,27 @@ use App\Http\Controllers\Input;
 
 class PagesController extends Controller
 {
+
+
+    // History page controller
+
+    public function historyPage(){
+        if(request()->has('group')){
+            $group = SocialPostGroups::distinct()->get(['type']);
+            $buffer_posts = BufferPosting::with(['groupInfo','accountInfo'])->where('type', request('group'))->paginate(10)->append('type', request('group'));
+        }else{
+            
+            $group = SocialPostGroups::distinct()->get(['type']);
+            $buffer_posts = BufferPosting::with(['groupInfo','accountInfo'])->paginate(10);
+        }
+        return view('group.history', compact('group'))->with('buffer_posts', $buffer_posts);
+    }
+
+
+
+
+
+
     //
     public function settings()
     {
